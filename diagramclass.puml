@@ -1,0 +1,561 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class ARTBooks {
+	+ARTBooks()
+	+ARTBooks(std::string name, unsigned int pages, std::string author, std::string genre)
+	+operator<(const ARTBooks &) : bool
+	+operator==(const ARTBooks &) : bool
+	+operator>(const ARTBooks &) : bool
+	+operator>>(std::ifstream& in, ARTBooks &) : std : : ifstream&
+	+operator<<(std::ofstream& out, ARTBooks &) : std : : ofstream&
+	-genre : std::string
+	+getGenre() : std::string
+	+setGenre(std:: string) : void
+}
+
+
+class Act {
+	+Act(int, bool, bool change)
+	+~Act()
+	-action : bool
+	-change : bool
+	-type : int
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActA {
+	+ActA(ARTBooks c, tree<ARTBooks>* h, int t, bool a, bool ch)
+	+~ActA()
+	-copy : ARTBooks
+	+getCopy() : ARTBooks
+	-home : tree<ARTBooks>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActM {
+	+ActM(Magazines c, tree<Magazines>* h, int t, bool a, bool ch)
+	+~ActM()
+	-copy : Magazines
+	-home : tree<Magazines>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActN {
+	+ActN(Newspapers c, tree<Newspapers>* h, int t, bool a, bool ch)
+	+~ActN()
+	-copy : Newspapers
+	-home : tree<Newspapers>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActS {
+	+ActS(SCBooks c, tree<SCBooks>* h, int t, bool a, bool ch)
+	+~ActS()
+	-copy : SCBooks
+	-home : tree<SCBooks>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class AddBWindow {
+	+AddBWindow(tree<ARTBooks> &, tree<SCBooks> &, tree<Newspapers> &, tree<Magazines> &, stack<Act*> &)
+	-box : QComboBox*
+	-bot : QHBoxLayout*
+	-top : QHBoxLayout*
+	-lName : QLabel*
+	-line : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-addBook() : slots : void
+	-actionStack : stack<Act*>*
+	-ABooks : tree<ARTBooks>*
+	-Mag : tree<Magazines>*
+	-News : tree<Newspapers>*
+	-SBooks : tree<SCBooks>*
+}
+
+
+class BFile <template <class T>> {
+	+BFile(std:: string, long int mode)
+	+~BFile()
+	+end() : bool
+	+isOpened() : bool
+	-fin : std::ifstream
+	-fout : std::ofstream
+	-name : std::string
+	+read(T &) : void
+	+write(T &) : void
+}
+
+
+class Books {
+	+Books()
+	+Books(std::string name, unsigned int pages, std::string author)
+	+operator<(const Books &) : bool
+	+operator==(const Books &) : bool
+	+operator>(const Books &) : bool
+	+operator>>(std::ifstream& in, Books &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Books &) : std : : ofstream&
+	-author : std::string
+	+getAuth() : std::string
+	+setAuth(std:: string) : void
+}
+
+
+class Exception {
+	+Exception()
+	+Exception(std::string message)
+	+Exception(const Exception &)
+	+~Exception()
+	+operator=(const Exception &) : Exception&
+	-message : std::string
+	+what() : std::string
+}
+
+
+class MWindow {
+	+MWindow(QWidget* parent)
+	+~MWindow()
+	-status : QLabel*
+	-search : QLineEdit*
+	-list : QListWidget*
+	-tools : QToolBar*
+	-tools2 : QToolBar*
+	-addReading() : slots : void
+	-actionStack : stack<Act*>
+	-tree_artb : tree<ARTBooks>
+	-tree_mag : tree<Magazines>
+	-tree_news : tree<Newspapers>
+	-tree_scb : tree<SCBooks>
+	-current_tree : unsigned
+	-WatchArtBook() : void
+	-WatchMagazines() : void
+	-WatchNewspapers() : void
+	-WatchSciBook() : void
+	-changeConditionNameAZ() : void
+	-changeConditionNameZA() : void
+	-changeConditionPagesDecr() : void
+	-changeConditionPagesIncr() : void
+	-createBookList() : void
+	-createMenuBar() : void
+	-createStatusBar() : void
+	-createToolBar() : void
+	-createToolBar2() : void
+	-customMenuSlot(QPoint) : void
+	-deleteElementList() : void
+	-errorGet(std:: string) : void
+	-loadFromFile() : void
+	-printtree(tree<T> &, QListWidget*) : void
+	-saveInFile() : void
+	-saveInFileSlot() : void
+	-searchSlot() : void
+	-setABook() : void
+	-setMagazines() : void
+	-setNewsp() : void
+	-setSBook() : void
+	+setStatusBar(std:: string) : void
+	-setStatusDefault() : void
+	-undoActionSlot() : void
+	+updateList(unsigned type) : void
+	-updateListSlot() : void
+}
+
+
+class Magazines {
+	+Magazines()
+	+Magazines(std::string name, unsigned int pages, std::string subjects)
+	+operator<(const Magazines &) : bool
+	+operator==(const Magazines &) : bool
+	+operator>(const Magazines &) : bool
+	+operator>>(std::ifstream& in, Magazines &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Magazines &) : std : : ofstream&
+	+getSubject() : std::string
+	-subject : std::string
+	+setSubject(std:: string) : void
+}
+
+
+class Newspapers {
+	+Newspapers()
+	+Newspapers(std::string name, unsigned int pages, std::string location)
+	+operator<(const Newspapers &) : bool
+	+operator==(const Newspapers &) : bool
+	+operator>(const Newspapers &) : bool
+	+operator>>(std::ifstream& in, Newspapers &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Newspapers &) : std : : ofstream&
+	+getLocation() : std::string
+	-location : std::string
+	+setLocation(std:: string) : void
+}
+
+
+class NumberException {
+	+NumberException(const std::string& message, long double number)
+	+NumberException(const std::string& message, int number)
+	+~NumberException()
+	+getnumber() : long double
+	-number : long double
+	+getsize() : long int
+	-size : long int
+}
+
+
+class Reading {
+	+Reading()
+	+Reading(std::string name, unsigned int pages)
+	+getTime() : QDateTime
+	+conditionPagesDecr(T t1, T t2) : bool
+	+conditionPagesIncr(T t1, T t2) : bool
+	+operator<(const Reading &) : bool
+	+operator==(const Reading &) : bool
+	+operator>(const Reading &) : bool
+	+getPages() : int
+	+operator>>(std::ifstream& in, Reading &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Reading &) : std : : ofstream&
+	+getName() : std::string
+	-name : std::string
+	+getTop() : unsigned
+	-pages : unsigned int
+	-top : unsigned int
+	+setName(std:: string) : void
+	+setPages(unsigned int) : void
+	+setTime(QTime) : void
+	+setTop(unsigned int) : void
+}
+
+
+class SCBooks {
+	+SCBooks()
+	+SCBooks(std::string name, unsigned int pages, std::string author, std::string section)
+	+operator<(const SCBooks &) : bool
+	+operator==(const SCBooks &) : bool
+	+operator>(const SCBooks &) : bool
+	+operator>>(std::ifstream& in, SCBooks &) : std : : ifstream&
+	+operator<<(std::ofstream& out, SCBooks &) : std : : ofstream&
+	+getSection() : std::string
+	-section : std::string
+	+setSection(std:: string) : void
+}
+
+
+class TempEdition {
+	+TempEdition()
+	+TempEdition(std::string name, unsigned int pages)
+	-date_of_issue : QDateTime
+	+getTimeIssue() : QDateTime
+	+operator<(const TempEdition &) : bool
+	+operator==(const TempEdition &) : bool
+	+operator>(const TempEdition &) : bool
+	+operator>>(std::ifstream& in, TempEdition &) : std : : ifstream&
+	+operator<<(std::ofstream& out, TempEdition &) : std : : ofstream&
+	+setTimeIssue(QDateTime) : void
+}
+
+
+class WindowAB {
+	+WindowAB(ARTBooks &)
+	-book : ARTBooks*
+	-top : QHBoxLayout*
+	-_lAuth : QLabel*
+	-_lGenr : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lTop : QLabel*
+	-lAuth : QLineEdit*
+	-lGenr : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	+errorSituation(std::string str) : signals : void
+	-changeabook() : slots : void
+}
+
+
+class WindowMag {
+	+WindowMag(Magazines &)
+	-mag : Magazines*
+	-calendar : QCalendarWidget*
+	-bot : QHBoxLayout*
+	-top : QHBoxLayout*
+	-_lDate : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lSub : QLabel*
+	-_lTop : QLabel*
+	-lDate : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lSub : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	-changeabook() : slots : void
+}
+
+
+class WindowNews {
+	+WindowNews(Newspapers &)
+	-news : Newspapers*
+	-calendar : QCalendarWidget*
+	-bot : QHBoxLayout*
+	-top : QHBoxLayout*
+	-_lDate : QLabel*
+	-_lLoc : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lTop : QLabel*
+	-lDate : QLineEdit*
+	-lLoc : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	-changeabook() : slots : void
+}
+
+
+class WindowSB {
+	+WindowSB(SCBooks &)
+	-top : QHBoxLayout*
+	-_lAuth : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lSect : QLabel*
+	-_lTop : QLabel*
+	-lAuth : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lSect : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	-book : SCBooks*
+	-changeabook() : slots : void
+}
+
+
+class _iterator <template <class D>> {
+	+_iterator()
+	+_iterator(node<D>* p)
+	+_iterator(const _iterator& it)
+	+operator*() : D&
+	+operator++(int) : _iterator&
+	+operator++() : _iterator&
+	+operator--(int) : _iterator&
+	+operator=(const _iterator& it) : _iterator&
+	+operator!=(const _iterator& it) : bool
+	+operator==(const _iterator& it) : bool
+	-pointer : node<D>*
+	+remove(_iterator<D>) : void tree<D
+}
+
+
+class excepProblemword {
+	+excepProblemword(const std::string& message)
+	+excepProblemword(const std::string& message, const std::string& text)
+	+~excepProblemword()
+	+gettext() : char*
+	-text : std::string
+}
+
+
+class node <template <class T>> {
+	+node(T, node* top, node* left, node* right, unsigned int hight)
+	-data : T
+	-getvalue() : T {query}
+	+operator&(node<T>& t) : node<T >&
+	-left : node<T>*
+	-right : node<T>*
+	-top : node<T>*
+	-height : unsigned int
+}
+
+
+class tree <template <class T>> {
+	+tree()
+	+tree(T)
+	+~tree()
+	+operator[](int) : _iterator<T >
+	#_begin(node<T>*) : _iterator<T>
+	#_rbegin(node<T>*) : _iterator<T>
+	+begin() : _iterator<T>
+	+end() : _iterator<T>
+	+find2(T t) : _iterator<T>
+	+rbegin() : _iterator<T>
+	+rend() : _iterator<T>
+	#{static} _condition(T t1, T t2) : bool
+	-condition : bool (* ) ( T, T )
+	#_add(T, node<T>* pointer, node<T>* prepointer) : node<T>*
+	#_find(T t, node<T>*) : node<T>*
+	+find(T t) : node<T>*
+	-root : node<T>*
+	+operator=(tree<T> &) : tree<T >&
+	#_copy(node<T>* point) : void
+	#_setroot(node<T>* p) : void
+	#_show(node<T>* point) : void
+	+add(T) : void
+	+remove(iterator) : void
+	+remove(node<T>*) : void
+	+remove(T) : void
+	+set_condition(bool(*f)(T,T)) : void
+	+show() : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+Act <|-- ActA
+
+
+Act <|-- ActM
+
+
+Act <|-- ActN
+
+
+Act <|-- ActS
+
+
+Books <|-- ARTBooks
+
+
+Books <|-- SCBooks
+
+
+Exception <|-- NumberException
+
+
+Exception <|-- excepProblemword
+
+
+Reading <|-- Books
+
+
+Reading <|-- TempEdition
+
+
+TempEdition <|-- Magazines
+
+
+TempEdition <|-- Newspapers
+
+
+
+
+
+/' Aggregation relationships '/
+
+ActA "2" *-- ARTBooks
+
+
+ActA *-- tree
+
+
+ActM "2" *-- Magazines
+
+
+ActM *-- tree
+
+
+ActN "2" *-- Newspapers
+
+
+ActN *-- tree
+
+
+ActS "2" *-- SCBooks
+
+
+ActS *-- tree
+
+
+AddBWindow *-- ARTBooks
+
+
+AddBWindow o-- Act
+
+
+AddBWindow *-- Magazines
+
+
+AddBWindow *-- Newspapers
+
+
+AddBWindow *-- SCBooks
+
+
+AddBWindow "4" *-- tree
+
+
+MWindow *-- ARTBooks
+
+
+MWindow o-- Act
+
+
+MWindow *-- Magazines
+
+
+MWindow *-- Newspapers
+
+
+MWindow *-- SCBooks
+
+
+MWindow "4" *-- tree
+
+
+WindowAB o-- ARTBooks
+
+
+WindowMag o-- Magazines
+
+
+WindowNews o-- Newspapers
+
+
+WindowSB o-- SCBooks
+
+
+_iterator *-- node
+
+
+node "3" *-- node
+
+
+tree *-- node
+
+
+
+
+
+@enduml

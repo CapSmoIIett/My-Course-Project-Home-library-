@@ -1,0 +1,59 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class Exception {
+	+Exception()
+	+Exception(std::string message)
+	+Exception(const Exception &)
+	+~Exception()
+	+operator=(const Exception &) : Exception&
+	-message : std::string
+	+what() : std::string
+}
+
+
+class NumberException {
+	+NumberException(const std::string& message, long double number)
+	+NumberException(const std::string& message, int number)
+	+~NumberException()
+	+getnumber() : long double
+	-number : long double
+	+getsize() : long int
+	-size : long int
+}
+
+
+class excepProblemword {
+	+excepProblemword(const std::string& message)
+	+excepProblemword(const std::string& message, const std::string& text)
+	+~excepProblemword()
+	+gettext() : char*
+	-text : std::string
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+Exception <|-- NumberException
+
+
+Exception <|-- excepProblemword
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+@enduml

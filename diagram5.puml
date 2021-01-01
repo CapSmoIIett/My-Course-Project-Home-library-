@@ -1,0 +1,81 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class Act {
+	+Act(int, bool, bool change)
+	+~Act()
+	-action : bool
+	-change : bool
+	-type : int
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActA {
+	+ActA(ARTBooks c, tree<ARTBooks>* h, int t, bool a, bool ch)
+	+~ActA()
+	-copy : ARTBooks
+	+getCopy() : ARTBooks
+	-home : tree<ARTBooks>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActM {
+	+ActM(Magazines c, tree<Magazines>* h, int t, bool a, bool ch)
+	+~ActM()
+	-copy : Magazines
+	-home : tree<Magazines>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActN {
+	+ActN(Newspapers c, tree<Newspapers>* h, int t, bool a, bool ch)
+	+~ActN()
+	-copy : Newspapers
+	-home : tree<Newspapers>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+class ActS {
+	+ActS(SCBooks c, tree<SCBooks>* h, int t, bool a, bool ch)
+	+~ActS()
+	-copy : SCBooks
+	-home : tree<SCBooks>*
+	+returnAction(stack<Act*>& stack) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+Act <|-- ActA
+
+
+Act <|-- ActM
+
+
+Act <|-- ActN
+
+
+Act <|-- ActS
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+@enduml

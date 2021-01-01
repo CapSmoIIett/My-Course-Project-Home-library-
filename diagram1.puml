@@ -1,0 +1,103 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class BFile <template <class T>> {
+	+BFile(std:: string, long int mode)
+	+~BFile()
+	+end() : bool
+	+isOpened() : bool
+	-fin : std::ifstream
+	-fout : std::ofstream
+	-name : std::string
+	+read(T &) : void
+	+write(T &) : void
+}
+
+
+class _iterator <template <class D>> {
+	+_iterator()
+	+_iterator(node<D>* p)
+	+_iterator(const _iterator& it)
+	+operator*() : D&
+	+operator++(int) : _iterator&
+	+operator++() : _iterator&
+	+operator--(int) : _iterator&
+	+operator=(const _iterator& it) : _iterator&
+	+operator!=(const _iterator& it) : bool
+	+operator==(const _iterator& it) : bool
+	-pointer : node<D>*
+	+remove(_iterator<D>) : void tree<D
+}
+
+
+class node <template <class T>> {
+	+node(T, node* top, node* left, node* right, unsigned int hight)
+	-data : T
+	-getvalue() : T {query}
+	+operator&(node<T>& t) : node<T >&
+	-left : node<T>*
+	-right : node<T>*
+	-top : node<T>*
+	-height : unsigned int
+}
+
+
+class tree <template <class T>> {
+	+tree()
+	+tree(T)
+	+~tree()
+	+operator[](int) : _iterator<T >
+	#_begin(node<T>*) : _iterator<T>
+	#_rbegin(node<T>*) : _iterator<T>
+	+begin() : _iterator<T>
+	+end() : _iterator<T>
+	+find2(T t) : _iterator<T>
+	+rbegin() : _iterator<T>
+	+rend() : _iterator<T>
+	#{static} _condition(T t1, T t2) : bool
+	-condition : bool (* ) ( T, T )
+	#_add(T, node<T>* pointer, node<T>* prepointer) : node<T>*
+	#_find(T t, node<T>*) : node<T>*
+	+find(T t) : node<T>*
+	-root : node<T>*
+	+operator=(tree<T> &) : tree<T >&
+	#_copy(node<T>* point) : void
+	#_setroot(node<T>* p) : void
+	#_show(node<T>* point) : void
+	+add(T) : void
+	+remove(iterator) : void
+	+remove(node<T>*) : void
+	+remove(T) : void
+	+set_condition(bool(*f)(T,T)) : void
+	+show() : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+
+
+
+/' Aggregation relationships '/
+
+_iterator *-- node
+
+
+node "3" *-- node
+
+
+tree *-- node
+
+
+
+
+
+@enduml

@@ -1,0 +1,148 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class ARTBooks {
+	+ARTBooks()
+	+ARTBooks(std::string name, unsigned int pages, std::string author, std::string genre)
+	+operator<(const ARTBooks &) : bool
+	+operator==(const ARTBooks &) : bool
+	+operator>(const ARTBooks &) : bool
+	+operator>>(std::ifstream& in, ARTBooks &) : std : : ifstream&
+	+operator<<(std::ofstream& out, ARTBooks &) : std : : ofstream&
+	-genre : std::string
+	+getGenre() : std::string
+	+setGenre(std:: string) : void
+}
+
+
+class Books {
+	+Books()
+	+Books(std::string name, unsigned int pages, std::string author)
+	+operator<(const Books &) : bool
+	+operator==(const Books &) : bool
+	+operator>(const Books &) : bool
+	+operator>>(std::ifstream& in, Books &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Books &) : std : : ofstream&
+	-author : std::string
+	+getAuth() : std::string
+	+setAuth(std:: string) : void
+}
+
+
+class Magazines {
+	+Magazines()
+	+Magazines(std::string name, unsigned int pages, std::string subjects)
+	+operator<(const Magazines &) : bool
+	+operator==(const Magazines &) : bool
+	+operator>(const Magazines &) : bool
+	+operator>>(std::ifstream& in, Magazines &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Magazines &) : std : : ofstream&
+	+getSubject() : std::string
+	-subject : std::string
+	+setSubject(std:: string) : void
+}
+
+
+class Newspapers {
+	+Newspapers()
+	+Newspapers(std::string name, unsigned int pages, std::string location)
+	+operator<(const Newspapers &) : bool
+	+operator==(const Newspapers &) : bool
+	+operator>(const Newspapers &) : bool
+	+operator>>(std::ifstream& in, Newspapers &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Newspapers &) : std : : ofstream&
+	+getLocation() : std::string
+	-location : std::string
+	+setLocation(std:: string) : void
+}
+
+
+class Reading {
+	+Reading()
+	+Reading(std::string name, unsigned int pages)
+	+getTime() : QDateTime
+	+conditionPagesDecr(T t1, T t2) : bool
+	+conditionPagesIncr(T t1, T t2) : bool
+	+operator<(const Reading &) : bool
+	+operator==(const Reading &) : bool
+	+operator>(const Reading &) : bool
+	+getPages() : int
+	+operator>>(std::ifstream& in, Reading &) : std : : ifstream&
+	+operator<<(std::ofstream& out, Reading &) : std : : ofstream&
+	+getName() : std::string
+	-name : std::string
+	+getTop() : unsigned
+	-pages : unsigned int
+	-top : unsigned int
+	+setName(std:: string) : void
+	+setPages(unsigned int) : void
+	+setTime(QTime) : void
+	+setTop(unsigned int) : void
+}
+
+
+class SCBooks {
+	+SCBooks()
+	+SCBooks(std::string name, unsigned int pages, std::string author, std::string section)
+	+operator<(const SCBooks &) : bool
+	+operator==(const SCBooks &) : bool
+	+operator>(const SCBooks &) : bool
+	+operator>>(std::ifstream& in, SCBooks &) : std : : ifstream&
+	+operator<<(std::ofstream& out, SCBooks &) : std : : ofstream&
+	+getSection() : std::string
+	-section : std::string
+	+setSection(std:: string) : void
+}
+
+
+class TempEdition {
+	+TempEdition()
+	+TempEdition(std::string name, unsigned int pages)
+	-date_of_issue : QDateTime
+	+getTimeIssue() : QDateTime
+	+operator<(const TempEdition &) : bool
+	+operator==(const TempEdition &) : bool
+	+operator>(const TempEdition &) : bool
+	+operator>>(std::ifstream& in, TempEdition &) : std : : ifstream&
+	+operator<<(std::ofstream& out, TempEdition &) : std : : ofstream&
+	+setTimeIssue(QDateTime) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+Books <|-- ARTBooks
+
+
+Books <|-- SCBooks
+
+
+Reading <|-- Books
+
+
+Reading <|-- TempEdition
+
+
+TempEdition <|-- Magazines
+
+
+TempEdition <|-- Newspapers
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+@enduml

@@ -1,0 +1,186 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class AddBWindow {
+	+AddBWindow(tree<ARTBooks> &, tree<SCBooks> &, tree<Newspapers> &, tree<Magazines> &, stack<Act*> &)
+	-box : QComboBox*
+	-bot : QHBoxLayout*
+	-top : QHBoxLayout*
+	-lName : QLabel*
+	-line : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-addBook() : slots : void
+	-actionStack : stack<Act*>*
+	-ABooks : tree<ARTBooks>*
+	-Mag : tree<Magazines>*
+	-News : tree<Newspapers>*
+	-SBooks : tree<SCBooks>*
+}
+
+
+class MWindow {
+	+MWindow(QWidget* parent)
+	+~MWindow()
+	-status : QLabel*
+	-search : QLineEdit*
+	-list : QListWidget*
+	-tools : QToolBar*
+	-tools2 : QToolBar*
+	-addReading() : slots : void
+	-actionStack : stack<Act*>
+	-tree_artb : tree<ARTBooks>
+	-tree_mag : tree<Magazines>
+	-tree_news : tree<Newspapers>
+	-tree_scb : tree<SCBooks>
+	-current_tree : unsigned
+	-WatchArtBook() : void
+	-WatchMagazines() : void
+	-WatchNewspapers() : void
+	-WatchSciBook() : void
+	-changeConditionNameAZ() : void
+	-changeConditionNameZA() : void
+	-changeConditionPagesDecr() : void
+	-changeConditionPagesIncr() : void
+	-createBookList() : void
+	-createMenuBar() : void
+	-createStatusBar() : void
+	-createToolBar() : void
+	-createToolBar2() : void
+	-customMenuSlot(QPoint) : void
+	-deleteElementList() : void
+	-errorGet(std:: string) : void
+	-loadFromFile() : void
+	-printtree(tree<T> &, QListWidget*) : void
+	-saveInFile() : void
+	-saveInFileSlot() : void
+	-searchSlot() : void
+	-setABook() : void
+	-setMagazines() : void
+	-setNewsp() : void
+	-setSBook() : void
+	+setStatusBar(std:: string) : void
+	-setStatusDefault() : void
+	-undoActionSlot() : void
+	+updateList(unsigned type) : void
+	-updateListSlot() : void
+}
+
+
+class WindowAB {
+	+WindowAB(ARTBooks &)
+	-book : ARTBooks*
+	-top : QHBoxLayout*
+	-_lAuth : QLabel*
+	-_lGenr : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lTop : QLabel*
+	-lAuth : QLineEdit*
+	-lGenr : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	+errorSituation(std::string str) : signals : void
+	-changeabook() : slots : void
+}
+
+
+class WindowMag {
+	+WindowMag(Magazines &)
+	-mag : Magazines*
+	-calendar : QCalendarWidget*
+	-bot : QHBoxLayout*
+	-top : QHBoxLayout*
+	-_lDate : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lSub : QLabel*
+	-_lTop : QLabel*
+	-lDate : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lSub : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	-changeabook() : slots : void
+}
+
+
+class WindowNews {
+	+WindowNews(Newspapers &)
+	-news : Newspapers*
+	-calendar : QCalendarWidget*
+	-bot : QHBoxLayout*
+	-top : QHBoxLayout*
+	-_lDate : QLabel*
+	-_lLoc : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lTop : QLabel*
+	-lDate : QLineEdit*
+	-lLoc : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	-changeabook() : slots : void
+}
+
+
+class WindowSB {
+	+WindowSB(SCBooks &)
+	-top : QHBoxLayout*
+	-_lAuth : QLabel*
+	-_lName : QLabel*
+	-_lPage : QLabel*
+	-_lSect : QLabel*
+	-_lTop : QLabel*
+	-lAuth : QLineEdit*
+	-lName : QLineEdit*
+	-lPage : QLineEdit*
+	-lSect : QLineEdit*
+	-lTop : QLineEdit*
+	+bCl : QPushButton*
+	+bOk : QPushButton*
+	-all : QVBoxLayout*
+	-left : QVBoxLayout*
+	-right : QVBoxLayout*
+	-book : SCBooks*
+	-changeabook() : slots : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+@enduml
